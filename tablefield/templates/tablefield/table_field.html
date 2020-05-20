@@ -1,0 +1,42 @@
+{% load i18n %}
+<div class="field boolean_field widget-checkbox_input">
+    <label for="{{ widget.attrs.id }}-handsontable-header">{% trans 'Row header' %}</label>
+    <div class="field-content">
+        <div class="input">
+            <input type="checkbox" id="{{ widget.attrs.id }}-handsontable-header" name="handsontable-header"/>
+        </div>
+        <p class="help">{% trans 'Display the first row as a header.' %}</p>
+    </div>
+</div>
+<br/>
+<div class="field boolean_field widget-checkbox_input">
+    <label for="{{ widget.attrs.id }}-handsontable-col-header">{% trans 'Column header' %}</label>
+    <div class="field-content">
+        <div class="input">
+            <input type="checkbox" id="{{ widget.attrs.id }}-handsontable-col-header" name="handsontable-col-header"/>
+        </div>
+        <p class="help">{% trans 'Display the first column as a header.' %}</p>
+    </div>
+</div>
+<br/>
+<div id="{{ widget.attrs.id }}-handsontable-container"></div>
+<textarea style="display:none" class="table_field_textarea" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %}>
+{% if widget.value %}{{ widget.value }}{% endif %}</textarea>
+
+<script>
+window.addEventListener('load', function(){
+    window.initTable("{{ widget.attrs.id|escapejs }}", {{ widget.attrs.table_options_json|safe }});
+});
+</script>
+<style type="text/css">
+    .widget-checkbox_input label {
+        font-weight: bold;
+    }
+    .widget-checkbox_input .field-content {
+        line-height: 1.8em;
+    }
+    .widget-checkbox_input .field-content input {
+        float: left;
+        margin-right: 5px;
+    }
+</style>

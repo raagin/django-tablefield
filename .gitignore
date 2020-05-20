@@ -1,0 +1,7 @@
+*.pyc
+.DS_Store
+dist/*
+build/*
+django_tablefield.egg-info/*
+package-lock.json
+node_modules/*

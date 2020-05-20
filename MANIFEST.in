@@ -1,0 +1,6 @@
+  
+include README.md
+include LICENSE
+recursive-include tablefield/static *
+recursive-include tablefield/locale *
+recursive-include tablefield/templates *
