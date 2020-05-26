@@ -16,7 +16,7 @@ class MyModel(models.Model):
     table = TableField(verbose_name='Table')
 
 ```
-## In templates
+### In templates
 ```html
 {% load tablefield_tags %}
 {% tablefield_render mymodel.table %}
