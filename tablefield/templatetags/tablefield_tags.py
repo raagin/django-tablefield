@@ -6,6 +6,8 @@ register = template.Library()
 
 @register.simple_tag
 def tablefield_render(value):
+    if not value:
+        return ""
     value = json.loads(value)
     data = value.get('data', None)
     if not data:
