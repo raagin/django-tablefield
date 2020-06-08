@@ -1,6 +1,6 @@
 # Django Tablefield
 It uses Handsontable JS library (0.24.2 version. MIT Lisence). It is almost like wagtail's [TableBlock](https://github.com/wagtail/wagtail/tree/master/wagtail/contrib/table_block).\
-But for plan Django.
+But for plain Django.
 
 ## Installation
 ```bash
