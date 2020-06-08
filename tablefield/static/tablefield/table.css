@@ -1,0 +1,197 @@
+.tablefield__table {
+  background-color: white;
+  color: #363636;
+  margin: 20px 0 30px;
+}
+
+.tablefield__table td,
+.tablefield__table th {
+  border: 1px solid #dbdbdb;
+  border-width: 0 0 1px;
+  padding: 0.5em 0.75em;
+  vertical-align: top;
+}
+
+.tablefield__table td.is-white,
+.tablefield__table th.is-white {
+  background-color: white;
+  border-color: white;
+  color: #0a0a0a;
+}
+
+.tablefield__table td.is-black,
+.tablefield__table th.is-black {
+  background-color: #0a0a0a;
+  border-color: #0a0a0a;
+  color: white;
+}
+
+.tablefield__table td.is-light,
+.tablefield__table th.is-light {
+  background-color: whitesmoke;
+  border-color: whitesmoke;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.tablefield__table td.is-dark,
+.tablefield__table th.is-dark {
+  background-color: #363636;
+  border-color: #363636;
+  color: #fff;
+}
+
+.tablefield__table td.is-primary,
+.tablefield__table th.is-primary {
+  background-color: #00d1b2;
+  border-color: #00d1b2;
+  color: #fff;
+}
+
+.tablefield__table td.is-link,
+.tablefield__table th.is-link {
+  background-color: #3273dc;
+  border-color: #3273dc;
+  color: #fff;
+}
+
+.tablefield__table td.is-info,
+.tablefield__table th.is-info {
+  background-color: #3298dc;
+  border-color: #3298dc;
+  color: #fff;
+}
+
+.tablefield__table td.is-success,
+.tablefield__table th.is-success {
+  background-color: #48c774;
+  border-color: #48c774;
+  color: #fff;
+}
+
+.tablefield__table td.is-warning,
+.tablefield__table th.is-warning {
+  background-color: #ffdd57;
+  border-color: #ffdd57;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.tablefield__table td.is-danger,
+.tablefield__table th.is-danger {
+  background-color: #f14668;
+  border-color: #f14668;
+  color: #fff;
+}
+
+.tablefield__table td.is-narrow,
+.tablefield__table th.is-narrow {
+  white-space: nowrap;
+  width: 1%;
+}
+
+.tablefield__table td.is-selected,
+.tablefield__table th.is-selected {
+  background-color: #00d1b2;
+  color: #fff;
+}
+
+.tablefield__table td.is-selected a,
+.tablefield__table td.is-selected strong,
+.tablefield__table th.is-selected a,
+.tablefield__table th.is-selected strong {
+  color: #111;
+}
+
+.tablefield__table th {
+  color: #363636;
+}
+
+.tablefield__table th:not([align]) {
+  text-align: left;
+}
+
+.tablefield__table tr.is-selected {
+  background-color: #00d1b2;
+  color: #fff;
+}
+
+.tablefield__table tr.is-selected a,
+.tablefield__table tr.is-selected strong {
+  color: #111;
+}
+
+.tablefield__table tr.is-selected td,
+.tablefield__table tr.is-selected th {
+  border-color: #fff;
+  color: #111;
+}
+
+.tablefield__table thead {
+  background-color: transparent;
+}
+
+.tablefield__table thead td,
+.tablefield__table thead th {
+  border-width: 0 0 2px;
+  color: #363636;
+}
+
+.tablefield__table tfoot {
+  background-color: transparent;
+}
+
+.tablefield__table tfoot td,
+.tablefield__table tfoot th {
+  border-width: 2px 0 0;
+  color: #363636;
+}
+
+.tablefield__table tbody {
+  background-color: transparent;
+}
+
+.tablefield__table tbody tr:last-child td,
+.tablefield__table tbody tr:last-child th {
+  border-bottom-width: 0;
+}
+
+.tablefield__table.is-bordered td,
+.tablefield__table.is-bordered th {
+  border-width: 1px;
+}
+
+.tablefield__table.is-bordered tr:last-child td,
+.tablefield__table.is-bordered tr:last-child th {
+  border-bottom-width: 1px;
+}
+
+.tablefield__table.is-fullwidth {
+  width: 100%;
+}
+
+.tablefield__table.is-hoverable tbody tr:not(.is-selected):hover {
+  background-color: #fafafa;
+}
+
+.tablefield__table.is-hoverable.is-striped tbody tr:not(.is-selected):hover {
+  background-color: #fafafa;
+}
+
+.tablefield__table.is-hoverable.is-striped tbody tr:not(.is-selected):hover:nth-child(even) {
+  background-color: whitesmoke;
+}
+
+.tablefield__table.is-narrow td,
+.tablefield__table.is-narrow th {
+  padding: 0.25em 0.5em;
+}
+
+.tablefield__table.is-striped tbody tr:not(.is-selected):nth-child(even) {
+  background-color: #fafafa;
+}
+
+.tablefield__table-container {
+  -webkit-overflow-scrolling: touch;
+  overflow: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+}

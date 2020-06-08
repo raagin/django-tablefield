@@ -62,11 +62,11 @@ class TableFieldWidget(Widget):
     
     class Media:
         js = (
-            '/static/tablefield/handsontable/handsontable.full.js',
+            '/static/tablefield/handsontable/handsontable.min.js',
             '/static/tablefield/table.js',
         )
         css = {
-            'all': ('/static/tablefield/handsontable/handsontable.full.min.css',)
+            'all': ('/static/tablefield/handsontable/handsontable.min.css',)
             }
 
 FORMFIELD_FOR_DBFIELD_DEFAULTS[TableField] = {
