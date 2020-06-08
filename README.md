@@ -9,6 +9,13 @@ pip install git+https://github.com/raagin/django-tablefield.git
 
 ## Using
 ```python
+# settings.py
+INSTALLED_APPS = [
+    ...
+    'tablefield',
+    ...
+]
+
 # models.py
 from tablefield.fields import TableField
 
