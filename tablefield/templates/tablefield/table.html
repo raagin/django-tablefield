@@ -3,12 +3,12 @@
         <thead>
         <tr>
             {% for column in table_header %}
-                <th>
-                    {% if column.strip %}
+                <th {% if column.colspan %}colspan="{{ column.colspan }}"{% endif %} {% if column.rowspan %}rowspan="{{ column.rowspan }}"{% endif %} {% if column.className %}class="{{ column.className }}"{% endif %}>
+                    {% if column.value.strip %}
                         {% if html_renderer %}
-                            {{ column.strip|safe|linebreaksbr }}
+                            {{ column.value.strip|safe|linebreaksbr }}
                         {% else %}
-                            {{ column.strip|linebreaksbr }}
+                            {{ column.value.strip|linebreaksbr }}
                         {% endif %}
                     {% endif %}
                 </th>
@@ -21,22 +21,22 @@
         <tr>
             {% for column in row %}
                 {% if first_col_is_header and forloop.first %}
-                    <th>
-                        {% if column.strip %}
+                    <th {% if column.colspan %}colspan="{{ column.colspan }}"{% endif %} {% if column.rowspan %}rowspan="{{ column.rowspan }}"{% endif %} {% if column.className %}class="{{ column.className }}"{% endif %}>
+                        {% if column.value.strip %}
                             {% if html_renderer %}
-                                {{ column.strip|safe|linebreaksbr }}
+                                {{ column.value.strip|safe|linebreaksbr }}
                             {% else %}
-                                {{ column.strip|linebreaksbr }}
+                                {{ column.value.strip|linebreaksbr }}
                             {% endif %}
                         {% endif %}
                     </th>
                  {% else %}
-                    <td>
-                        {% if column.strip %}
+                    <td {% if column.colspan %}colspan="{{ column.colspan }}"{% endif %} {% if column.rowspan %}rowspan="{{ column.rowspan }}"{% endif %} {% if column.className %}class="{{ column.className }}"{% endif %}>
+                        {% if column.value.strip %}
                             {% if html_renderer %}
-                                {{ column.strip|safe|linebreaksbr }}
+                                {{ column.value.strip|safe|linebreaksbr }}
                             {% else %}
-                                {{ column.strip|linebreaksbr }}
+                                {{ column.value.strip|linebreaksbr }}
                             {% endif %}
                         {% endif %}
                     </td>
@@ -46,3 +46,29 @@
     {% endfor %}
     </tbody>
 </table>
+<style type="text/css">
+.tablefield__table td.htRight,
+.tablefield__table th.htRight {
+  text-align: right;
+}
+.tablefield__table td.htLeft,
+.tablefield__table th.htLeft {
+  text-align: left;
+}
+.tablefield__table td.htCenter,
+.tablefield__table th.htCenter {
+  text-align: center;
+}
+.tablefield__table td.htTop,
+.tablefield__table th.htTop {
+  vertical-align: top;
+}
+.tablefield__table td.htBottom,
+.tablefield__table th.htBottom {
+  vertical-align: bottom;
+}
+.tablefield__table td.htMiddle,
+.tablefield__table th.htMiddle {
+  vertical-align: middle;
+}
+</style>

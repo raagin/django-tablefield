@@ -9,7 +9,7 @@ DEFAULT_TABLE_OPTIONS = {
     'startCols': 3,
     'colHeaders': False,
     'rowHeaders': False,
-    # 'mergeCells': True,
+    'mergeCells': True,
     'contextMenu': [
         'row_above',
         'row_below',
@@ -20,13 +20,17 @@ DEFAULT_TABLE_OPTIONS = {
         'remove_row',
         'remove_col',
         '---------',
+        'mergeCells',
+        '---------',
+        'alignment',
+        '---------',
         'undo',
         'redo'
     ],
     'editor': 'text',
     'stretchH': 'all',
-    'height': 108,
-    'renderer': 'text',
+    'height': 200,
+    'renderer': 'html',
     'autoColumnSize': False,
 }
 

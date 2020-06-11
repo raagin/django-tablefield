@@ -11,8 +11,9 @@ function initTable(id, tableOptions) {
     var hot;
     var defaultOptions;
     var finalOptions = {};
-    var persist;
+    var persist = function() {};
     var cellEvent;
+    var cellsMeta = [];
     var structureEvent;
     var dataForForm = null;
     var getWidth = function() {
@@ -65,25 +66,72 @@ function initTable(id, tableOptions) {
         });
     }
 
-    persist = function() {
-        hiddenStreamInput.val(JSON.stringify({
-            data: hot.getData(),
-            first_row_is_table_header: tableHeaderCheckbox.prop('checked'),
-            first_col_is_header: colHeaderCheckbox.prop('checked')
-        }));
-    };
-
     cellEvent = function(change, source) {
         if (source === 'loadData') {
             return; //don't save this change
         }
-
         persist();
     };
 
     structureEvent = function(index, amount) {
         resizeHeight(getHeight());
         persist();
+    };
+
+    defaultOptions = {
+        afterChange: cellEvent,
+        afterCreateCol: structureEvent,
+        afterCreateRow: structureEvent,
+        afterRemoveCol: structureEvent,
+        afterRemoveRow: structureEvent,
+        afterUnmergeCells: structureEvent,
+        afterSetCellMeta: function (row, col, key, val) {
+            if (key != 'className') return;
+            var existed = cellsMeta.find(function(x){
+                return x.row == row && x.col == col && x.key == key;
+            });
+            if (existed) {
+                existed.val = val;
+            } else {
+                cellsMeta.push({'row': row, 'col': col, 'key': key, 'val': val});
+            }
+            persist();
+        }
+    };
+
+    if (dataForForm !== null) {
+        // Overrides default value from tableOptions (if given) with value from database
+        if (dataForForm.hasOwnProperty('data')) {
+            defaultOptions.data = dataForForm.data;
+        }
+        if (dataForForm.hasOwnProperty('mergeCells')) {
+            tableOptions['mergeCells'] = dataForForm.mergeCells;
+        }
+    }
+    Object.keys(defaultOptions).forEach(function (key) {
+        finalOptions[key] = defaultOptions[key];
+    });
+    Object.keys(tableOptions).forEach(function (key) {
+        finalOptions[key] = tableOptions[key];
+    });
+
+    hot = new Handsontable(document.getElementById(containerId), finalOptions);
+
+    // CellsMeta
+    for (var i = dataForForm.cellsMeta.length - 1; i >= 0; i--) {
+        var o = dataForForm.cellsMeta[i];
+        hot.setCellMeta(o.row, o.col, o.key, o.val);
+    }
+
+    persist = function() {
+        hiddenStreamInput.val(JSON.stringify({
+            data: hot.getData(),
+            first_row_is_table_header: tableHeaderCheckbox.prop('checked'),
+            first_col_is_header: colHeaderCheckbox.prop('checked'),
+            mergeCells: hot.getPlugin('mergeCells').mergedCellsCollection.mergedCells,
+            cellsMeta: cellsMeta
+        }));
+        console.log(hot.getPlugin('mergeCells').mergedCellsCollection.mergedCells);
     };
 
     tableHeaderCheckbox.on('change', function() {
@@ -94,28 +142,6 @@ function initTable(id, tableOptions) {
         persist();
     });
 
-    defaultOptions = {
-        afterChange: cellEvent,
-        afterCreateCol: structureEvent,
-        afterCreateRow: structureEvent,
-        afterRemoveCol: structureEvent,
-        afterRemoveRow: structureEvent,
-        // contextMenu set via init, from server defaults
-    };
-
-    if (dataForForm !== null && dataForForm.hasOwnProperty('data')) {
-        // Overrides default value from tableOptions (if given) with value from database
-        defaultOptions.data = dataForForm.data;
-    }
-
-    Object.keys(defaultOptions).forEach(function (key) {
-        finalOptions[key] = defaultOptions[key];
-    });
-    Object.keys(tableOptions).forEach(function (key) {
-        finalOptions[key] = tableOptions[key];
-    });
-
-    hot = new Handsontable(document.getElementById(containerId), finalOptions);
     hot.render(); // Call to render removes 'null' literals from empty cells
 
     // Apply resize after document is finished loading (parent .sequence-member-inner width is set)
@@ -125,6 +151,7 @@ function initTable(id, tableOptions) {
             $(window).trigger('resize');
         });
     }
+    window.hot = hot;
 }
 window.initTable = initTable;
 })(django.jQuery)
