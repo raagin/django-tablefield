@@ -1,2 +1,2 @@
-name = "streamfield"
-VERSION = '1.3.1'
+name = "tablefield"
+VERSION = '0.0.1b'
