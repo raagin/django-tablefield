@@ -68,7 +68,7 @@ DEFAULT_TABLE_OPTIONS = {
 As you see, default renderer is `html`.\
 You read about it: https://handsontable.com/docs/1.18.1/Options.html#renderer
 
-You may set yours options:
+You may set your options:
 ```python
 class MyModel(models.Model):
     table = TableField(
