@@ -118,9 +118,11 @@ function initTable(id, tableOptions) {
     hot = new Handsontable(document.getElementById(containerId), finalOptions);
 
     // CellsMeta
-    for (var i = dataForForm.cellsMeta.length - 1; i >= 0; i--) {
-        var o = dataForForm.cellsMeta[i];
-        hot.setCellMeta(o.row, o.col, o.key, o.val);
+    if (typeof dataForForm.cellsMeta !== 'undefined') {
+        for (var i = dataForForm.cellsMeta.length - 1; i >= 0; i--) {
+            var o = dataForForm.cellsMeta[i];
+            hot.setCellMeta(o.row, o.col, o.key, o.val);
+        }
     }
 
     persist = function() {
@@ -131,7 +133,6 @@ function initTable(id, tableOptions) {
             mergeCells: hot.getPlugin('mergeCells').mergedCellsCollection.mergedCells,
             cellsMeta: cellsMeta
         }));
-        console.log(hot.getPlugin('mergeCells').mergedCellsCollection.mergedCells);
     };
 
     tableHeaderCheckbox.on('change', function() {
