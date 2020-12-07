@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="django-tablefield",
-    version="0.0.1b",
+    version="0.0.2",
     author="Yury Lapshinov",
     author_email="y.raagin@gmail.com",
     description="tables in django admin",
@@ -18,7 +18,7 @@ setuptools.setup(
     zip_safe=False,
     python_requires='>=3',
     classifiers=[
-        "Development Status :: 4 - Beta",
+        "Development Status :: 5 - Production",
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",

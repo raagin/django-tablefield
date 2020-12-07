@@ -1,2 +1,2 @@
 name = "tablefield"
-VERSION = '0.0.1b'
+VERSION = '0.0.2'

@@ -3,43 +3,42 @@ from django.db.models import TextField
 from django.forms.widgets import Widget
 from django.contrib.admin.options import FORMFIELD_FOR_DBFIELD_DEFAULTS
 
-DEFAULT_TABLE_OPTIONS = {
-    'minSpareRows': 0,
-    'startRows': 3,
-    'startCols': 3,
-    'colHeaders': False,
-    'rowHeaders': False,
-    'mergeCells': True,
-    'contextMenu': [
-        'row_above',
-        'row_below',
-        '---------',
-        'col_left',
-        'col_right',
-        '---------',
-        'remove_row',
-        'remove_col',
-        '---------',
-        'mergeCells',
-        '---------',
-        'alignment',
-        '---------',
-        'undo',
-        'redo'
-    ],
-    'editor': 'text',
-    'stretchH': 'all',
-    'height': 200,
-    'renderer': 'html',
-    'autoColumnSize': False,
-}
-
 
 class TableField(TextField):
     def __init__(self, *args, **kwargs):
         kwargs['blank'] = True
         kwargs['default'] = dict
-        self.table_options = kwargs.pop('table_options', DEFAULT_TABLE_OPTIONS)
+        self.renderer = kwargs.pop('renderer', 'html') 
+        self.table_options = kwargs.pop('table_options', {
+            'minSpareRows': 0,
+            'startRows': 3,
+            'startCols': 3,
+            'colHeaders': False,
+            'rowHeaders': False,
+            'mergeCells': True,
+            'contextMenu': [
+                'row_above',
+                'row_below',
+                '---------',
+                'col_left',
+                'col_right',
+                '---------',
+                'remove_row',
+                'remove_col',
+                '---------',
+                'mergeCells',
+                '---------',
+                'alignment',
+                '---------',
+                'undo',
+                'redo'
+            ],
+            'editor': 'text',
+            'stretchH': 'all',
+            'height': 200,
+            'renderer': self.renderer,
+            'autoColumnSize': False,
+        })
         super().__init__(*args, **kwargs)
 
     def formfield(self, **kwargs):
@@ -55,7 +54,9 @@ class TableField(TextField):
         return str(json.dumps(value))
 
     def from_db_value(self, value, expression, connection):
-        return value
+        v = json.loads(value)
+        v['renderer'] = self.renderer
+        return str(json.dumps(v))
 
     def to_python(self, value):
         return json.loads(value)

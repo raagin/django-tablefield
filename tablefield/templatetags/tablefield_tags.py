@@ -16,10 +16,11 @@ def tablefield_render(value):
     first_row_is_table_header = value.get('first_row_is_table_header', False)
     merge_сells = value.get('mergeCells', [])
     cells_meta = value.get('cellsMeta', [])
+    renderer = value.get('renderer', 'html')
 
     data_objects = []
     
-    
+    print(value)
     # iterate over all table [['1', None, None], ['1', '2', '3']]
     # and replace values with objects with extra data - mergeCells and cellsMeta.    
     # and drop next cells when colspan or rowspan exists.
@@ -68,5 +69,6 @@ def tablefield_render(value):
         table_header=table_header,
         first_col_is_header=value.get('first_col_is_header', False),
         merge_сells=merge_сells,
-        cells_meta=cells_meta
+        cells_meta=cells_meta,
+        html_renderer=renderer == 'html'
         )))
