@@ -18,7 +18,7 @@ setuptools.setup(
     zip_safe=False,
     python_requires='>=3',
     classifiers=[
-        "Development Status :: 5 - Production",
+        "Development Status :: 5 - Production/Stable",
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
