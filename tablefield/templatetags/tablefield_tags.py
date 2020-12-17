@@ -20,7 +20,6 @@ def tablefield_render(value):
 
     data_objects = []
     
-    print(value)
     # iterate over all table [['1', None, None], ['1', '2', '3']]
     # and replace values with objects with extra data - mergeCells and cellsMeta.    
     # and drop next cells when colspan or rowspan exists.
