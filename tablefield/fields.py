@@ -51,7 +51,7 @@ class TableField(TextField):
         return super().formfield(**defaults)
 
     def get_prep_value(self, value):
-        return json.dumps(value)
+        return str(json.dumps(value))
 
     def from_db_value(self, value, expression, connection):
         v = json.loads(value)
